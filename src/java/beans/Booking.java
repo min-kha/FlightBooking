@@ -18,6 +18,18 @@ public class Booking {
     private Date bookingTime;
     private boolean isPaid;
 
+    public Booking() {
+    }
+
+    public Booking(int bookingID, int userID, int flightID, Date bookingTime, boolean isPaid) {
+        this.bookingID = bookingID;
+        this.userID = userID;
+        this.flightID = flightID;
+        this.bookingTime = bookingTime;
+        this.isPaid = isPaid;
+    }
+
+    
     public boolean isIsPaid() {
         return isPaid;
     }
