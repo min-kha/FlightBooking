@@ -51,6 +51,9 @@ public class UserController extends HttpServlet {
                 case urlPatterns + "/list":
                     listAllUsers(request, response);
                     break;
+                case urlPatterns + "/add":
+                    listAllUsers(request, response);
+                    break;
                 case urlPatterns + "/register":
                     registerUser(request, response);
                     break;
