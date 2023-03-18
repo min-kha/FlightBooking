@@ -12,26 +12,28 @@ import java.util.List;
 
 import beans.Flight;
 import db.DBContext;
+import java.sql.Timestamp;
 
 /**
  *
  * @author khami
  */
-
 public class FlightDAO {
 
     public List<Flight> getAllFlights() {
         List<Flight> flights = new ArrayList<>();
-        String sql = "SELECT * FROM Flights";
+        String sql = "SELECT * FROM Flight";
         try {
             ResultSet rs = DBContext.executeQuery(sql);
             while (rs.next()) {
                 Flight flight = new Flight();
                 flight.setFlightID(rs.getInt("flightID"));
                 flight.setRouteID(rs.getInt("routeID"));
-                flight.setDepartureTime(rs.getDate("departureTime"));
+                flight.setDepartureTime(rs.getTimestamp("departureTime"));
                 flight.setDuration(rs.getInt("duration"));
                 flight.setCapacity(rs.getInt("capacity"));
+                flight.setTicketType(rs.getString("ticketType"));
+                flight.setPrice(rs.getFloat("price"));
                 flights.add(flight);
             }
         } catch (SQLException e) {
@@ -42,16 +44,18 @@ public class FlightDAO {
 
     public Flight getFlightById(int id) {
         Flight flight = null;
-        String sql = "SELECT * FROM Flights WHERE flightID = ?";
+        String sql = "SELECT * FROM Flight WHERE flightID = ?";
         try {
             ResultSet rs = DBContext.executeQuery(sql, id);
             if (rs.next()) {
                 flight = new Flight();
                 flight.setFlightID(rs.getInt("flightID"));
                 flight.setRouteID(rs.getInt("routeID"));
-                flight.setDepartureTime(rs.getDate("departureTime"));
+                flight.setDepartureTime(rs.getTimestamp("departureTime"));
                 flight.setDuration(rs.getInt("duration"));
                 flight.setCapacity(rs.getInt("capacity"));
+                flight.setTicketType(rs.getString("ticketType"));
+                flight.setPrice(rs.getFloat("price"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,34 +64,61 @@ public class FlightDAO {
     }
 
     public boolean addFlight(Flight flight) {
-        String sql = "INSERT INTO Flights (routeID, departureTime, duration, capacity) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Flight (routeID, departureTime, duration, capacity, ticketType, price) VALUES (?, ?, ?, ?, ?, ?)";
         return DBContext.executeUpdate(sql, flight.getRouteID(), flight.getDepartureTime(),
-                flight.getDuration(), flight.getCapacity());
+                flight.getDuration(), flight.getCapacity(), flight.getTicketType(), flight.getPrice());
     }
 
     public boolean updateFlight(Flight flight) {
-        String sql = "UPDATE Flights SET routeID = ?, departureTime = ?, duration = ?, capacity = ? WHERE flightID = ?";
+        String sql = "UPDATE Flight SET routeID = ?, departureTime = ?, duration = ?, capacity = ?, ticketType = ?, price = ? WHERE flightID = ?";
         return DBContext.executeUpdate(sql, flight.getRouteID(), flight.getDepartureTime(),
-                flight.getDuration(), flight.getCapacity(), flight.getFlightID());
+                flight.getDuration(), flight.getCapacity(), flight.getTicketType(), flight.getPrice(), flight.getFlightID());
     }
 
     public boolean deleteFlight(int id) {
-        String sql = "DELETE FROM Flights WHERE flightID = ?";
+        String sql = "DELETE FROM Flight WHERE flightID = ?";
         return DBContext.executeUpdate(sql, id);
     }
 
     public List<Flight> searchFlights(int routeID, Date departureTime) {
         List<Flight> flights = new ArrayList<>();
-        String sql = "SELECT * FROM Flights WHERE routeID = ? AND departureTime >= ?";
+        String sql = "SELECT * FROM Flight WHERE routeID = ? AND departureTime >= ?";
         try {
-            ResultSet rs = DBContext.executeQuery(sql, routeID, departureTime);
+            Timestamp timestamp = new Timestamp(departureTime.getTime());
+            ResultSet rs = DBContext.executeQuery(sql, routeID, timestamp);
             while (rs.next()) {
                 Flight flight = new Flight();
                 flight.setFlightID(rs.getInt("flightID"));
                 flight.setRouteID(rs.getInt("routeID"));
-                flight.setDepartureTime(rs.getDate("departureTime"));
+                flight.setDepartureTime(rs.getTimestamp("departureTime"));
                 flight.setDuration(rs.getInt("duration"));
                 flight.setCapacity(rs.getInt("capacity"));
+                flight.setTicketType(rs.getString("ticketType"));
+                flight.setPrice(rs.getFloat("price"));
+                flights.add(flight);
+                System.out.println("==>" + flight.toString());
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flights;
+    }
+
+    public List<Flight> getFlightsByRouteID(int routeID) {
+        List<Flight> flights = new ArrayList<>();
+        String sql = "SELECT * FROM Flight WHERE routeID = ?";
+        try {
+            ResultSet rs = DBContext.executeQuery(sql, routeID);
+            while (rs.next()) {
+                Flight flight = new Flight();
+                flight.setFlightID(rs.getInt("flightID"));
+                flight.setRouteID(rs.getInt("routeID"));
+                flight.setDepartureTime(rs.getTimestamp("departureTime"));
+                flight.setDuration(rs.getInt("duration"));
+                flight.setCapacity(rs.getInt("capacity"));
+                flight.setTicketType(rs.getString("ticketType"));
+                flight.setPrice(rs.getFloat("price"));
                 flights.add(flight);
             }
         } catch (SQLException e) {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import beans.Booking;
 import db.DBContext;
-import java.util.Date;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,23 +24,30 @@ public class BookingDAO extends DBContext {
 
     private final Connection connection;
 
-    public BookingDAO() throws SQLException, ClassNotFoundException {
+    public BookingDAO() throws SQLException, ClassNotFoundException  {
         connection = DBContext.getConnection();
     }
 
-    public void addBooking(Booking booking) {
+    public int addBooking(Booking booking) {
+        int bookingID = -1;
         try {
             String query = "INSERT INTO Booking(userID, flightID, bookingTime, isPaid) "
                     + "VALUES (?, ?, ?, ?)";
-            PreparedStatement ps = connection.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, booking.getUserID());
             ps.setInt(2, booking.getFlightID());
             ps.setDate(3, new java.sql.Date(booking.getBookingTime().getTime()));
             ps.setBoolean(4, booking.isIsPaid());
             ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                bookingID = rs.getInt(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return bookingID;
     }
 
     public void updateBooking(Booking booking) {
@@ -56,6 +63,20 @@ public class BookingDAO extends DBContext {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void updateBookingToPaired(int bookingID) {
+        try {
+            String query = "UPDATE Booking SET isPaid = 1 "
+                    + "WHERE bookingID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, bookingID);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+            
         }
     }
 
@@ -82,7 +103,7 @@ public class BookingDAO extends DBContext {
                 booking.setBookingID(rs.getInt("bookingID"));
                 booking.setUserID(rs.getInt("userID"));
                 booking.setFlightID(rs.getInt("flightID"));
-                booking.setBookingTime(new Date(rs.getDate("bookingTime").getTime()));
+                booking.setBookingTime(new java.sql.Date(booking.getBookingTime().getTime()));
                 booking.setIsPaid(rs.getBoolean("isPaid"));
             }
         } catch (SQLException ex) {
@@ -103,7 +124,7 @@ public class BookingDAO extends DBContext {
                 booking.setBookingID(rs.getInt("BookingID"));
                 booking.setUserID(rs.getInt("UserID"));
                 booking.setFlightID(rs.getInt("FlightID"));
-                booking.setBookingTime(rs.getTimestamp("BookingTime"));
+                booking.setBookingTime(rs.getDate("BookingTime"));
                 booking.setIsPaid(rs.getBoolean("IsPaid"));
                 bookings.add(booking);
             }

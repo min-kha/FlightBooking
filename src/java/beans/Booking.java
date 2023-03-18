@@ -4,7 +4,7 @@
  */
 package beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -29,7 +29,13 @@ public class Booking {
         this.isPaid = isPaid;
     }
 
-    
+    public Booking(int userID, int flightID, Date bookingTime, boolean isPaid) {
+        this.userID = userID;
+        this.flightID = flightID;
+        this.bookingTime = bookingTime;
+        this.isPaid = isPaid;
+    }
+
     public boolean isIsPaid() {
         return isPaid;
     }
@@ -68,5 +74,12 @@ public class Booking {
 
     public void setBookingTime(Date bookingTime) {
         this.bookingTime = bookingTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking [bookingID=" + bookingID + ", userID=" + userID
+                + ", flightID=" + flightID + ", bookingTime=" + bookingTime
+                + ", isPaid=" + isPaid + "]";
     }
 }

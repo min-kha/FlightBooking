@@ -19,7 +19,7 @@ public class CityDAO {
 
     public List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
-        String sql = "SELECT * FROM Cities";
+        String sql = "SELECT * FROM City";
         try {
             ResultSet rs = DBContext.executeQuery(sql);
             while (rs.next()) {
@@ -36,7 +36,7 @@ public class CityDAO {
 
     public City getCityById(int id) {
         City city = null;
-        String sql = "SELECT * FROM Cities WHERE cityID = ?";
+        String sql = "SELECT * FROM City WHERE cityID = ?";
         try {
             ResultSet rs = DBContext.executeQuery(sql, id);
             if (rs.next()) {
@@ -51,17 +51,17 @@ public class CityDAO {
     }
 
     public boolean addCity(City city) {
-        String sql = "INSERT INTO Cities (cityName) VALUES (?)";
+        String sql = "INSERT INTO City (cityName) VALUES (?)";
         return DBContext.executeUpdate(sql, city.getCityName());
     }
 
     public boolean updateCity(City city) {
-        String sql = "UPDATE Cities SET cityName = ? WHERE cityID = ?";
+        String sql = "UPDATE City SET cityName = ? WHERE cityID = ?";
         return DBContext.executeUpdate(sql, city.getCityName(), city.getCityID());
     }
 
     public boolean deleteCity(int id) {
-        String sql = "DELETE FROM Cities WHERE cityID = ?";
+        String sql = "DELETE FROM City WHERE cityID = ?";
         return DBContext.executeUpdate(sql, id);
     }
 

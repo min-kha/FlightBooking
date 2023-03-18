@@ -10,14 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author khami
  */
 public class DBContext {
 
-    private final static String URL = "jdbc:sqlserver://MINHKHA\\MINHKHA:1433;databaseName=MyOrder";
+    private final static String URL = "jdbc:sqlserver://MINHKHA\\MINHKHA:1433;databaseName=FlightBookingDB";
     private static final String USERNAME = "sa";
     private static final String PASSWORD = "123";
     private static PreparedStatement preparedStatement;
