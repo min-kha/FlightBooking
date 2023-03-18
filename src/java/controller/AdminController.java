@@ -16,15 +16,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author khami
  */
-@WebServlet(name = "UserController", urlPatterns = {"/userController/*"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "AdminController", urlPatterns = {"/adminController/*"})
+public class AdminController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
@@ -35,17 +33,16 @@ public class UserController extends HttpServlet {
         userDAO = new UserDAO();
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getRequestURI();
-        System.out.println("Action(UserCRUD): " + action);
-        final String urlPatterns = "/FlightBooking/userController";
-
+        System.out.println("Action(admin): " + action);
+        System.out.println("Action(admin) test: " + request.getContextPath());
+        final String urlPatterns = "/FlightBooking/adminController";
+        request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
         try {
             switch (action) {
                 case urlPatterns + "/list":
@@ -62,6 +59,8 @@ public class UserController extends HttpServlet {
                     break;
                 case urlPatterns + "/update":
                     updateUser(request, response);
+                    break;
+                default:
                     break;
             }
         } catch (Exception e) {
@@ -87,7 +86,7 @@ public class UserController extends HttpServlet {
 
         List<Users> users = userDAO.getAllUsers();
         System.out.println("Getting listAllUsers");
-        System.out.println("listAllUsers: " + users);
+        System.out.println("listAllUsers employees size ==> " + users);
 
         request.setAttribute("users", users);
         redirectToList(request, response);
@@ -126,23 +125,32 @@ public class UserController extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-        int userID = Integer.parseInt(request.getParameter("userID"));
-        boolean result;
-        try {
-            result = userDAO.deleteUser(userID);
-            System.out.println("Is " + userID + " deleted? ==> " + result);
-            listAllUsers(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String employeeIds = request.getParameter("employeeIds");
+//            StringTokenizer tokenizer = new StringTokenizer(employeeIds, ",");
+//
+//            while (tokenizer.hasMoreTokens()) {
+//                String employeeId = tokenizer.nextElement().toString();
+//                System.out.println("User ID to be deleted,  employeeId ==>" + employeeId);
+//
+//                boolean result = UserDAO.deleteUser(Integer.parseInt(employeeId));
+//                System.out.println("is employeeId " + employeeId + " deleted ? " + result);
+//            }
+//
+//            List<User> employees = UserDAO.getAllUsers();
+//            System.out.println("insertResult employees ==>" + employees.size());
+//
+//            request.setAttribute("employees", employees);
+//            //request.setAttribute("deleteUser", result+"");
+//            redirectToList(request, response);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void redirectToList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/listUser.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/listUser.jsp");
         dispatcher.forward(request, response);
     }
 }

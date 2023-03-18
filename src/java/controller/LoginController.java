@@ -4,9 +4,7 @@
  */
 package controller;
 
-import beans.Booking;
 import beans.Users;
-import dao.BookingDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -14,11 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,11 +31,12 @@ public class LoginController extends HttpServlet {
             request.getSession().setAttribute("role", user.getRole());
             if (user.getRole() == 1) {
                 if (request.getSession().getAttribute("flight") != null) {
-                    continueBooking(user, request, response);
+                    continueBooking(request, response);
+                    return;
                 }
                 response.sendRedirect("home");
             } else if (user.getRole() == 0) {
-                response.sendRedirect("adminDashboardController");
+                response.sendRedirect(request.getContextPath() + "/adminController");
             }
 
         } else {
@@ -51,31 +45,9 @@ public class LoginController extends HttpServlet {
 
     }
 
-    void continueBooking(Users user, HttpServletRequest request, HttpServletResponse response) throws IOException, NumberFormatException, ServletException {
-        String userID = user.getUserID() + "";
+    void continueBooking(HttpServletRequest request, HttpServletResponse response) throws IOException, NumberFormatException, ServletException {
         String flightID = (String) request.getSession().getAttribute("flightID");
-        Booking booking = new Booking(Integer.parseInt(userID), Integer.parseInt(flightID), Date.valueOf(LocalDate.now()), false);
-        
-        try {
-            BookingDAO bookingDAO = new BookingDAO();
-            int bookingID = bookingDAO.addBooking(booking);
-            int adultsNo = Integer.parseInt((String) request.getSession().getAttribute("adults"));
-            
-            booking.setBookingID(bookingID);
-            request.setAttribute("booking", booking);
-            request.getSession().setAttribute("booking", booking);
-            System.out.println("SetAttribute 'booking' to Session: " + booking);
-            // nhập thông tin từng khách hàng
-            
-            request.setAttribute("numPassengers", adultsNo);
-            request.getRequestDispatcher("user/information.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(BookingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        response.sendRedirect("/FlightBooking/booking?f=" + flightID);
     }
 
     @Override

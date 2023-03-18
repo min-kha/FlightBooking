@@ -44,6 +44,7 @@ public class TicketController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getRequestURI();
         System.out.println("Action(TicketCRUD): " + action);
+        System.out.println("Action(TicketCRUD) PathInfo: " + request.getServletPath());
         final String urlPatterns = "/FlightBooking/ticket";
 
         try {

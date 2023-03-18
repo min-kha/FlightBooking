@@ -211,7 +211,7 @@
                         <div class="booking-form">
                             <form action="booking" method="post">
                                 <div class="form-group">
-                                    <div class="form-checkbox">
+                                    <div class="form-checkbox hidden">
                                         <label for="roundtrip" onclick="openReturnDate();">
                                             <input type="radio" id="roundtrip" name="flightType" value="roundTrip" checked>
                                             <span></span>Khứ hồi
@@ -253,7 +253,7 @@
                                             <input class="form-control" type="date" id="departureDate" name="departureDate" required onchange="checkDate()">
                                         </div>
                                     </div>
-                                    <div class="col-md-3" id="returnDateBox" style="opacity: 1; transition: opacity 1s ">
+                                    <div class="col-md-3" id="returnDateBox" style="visibility: hidden ; opacity: 1; transition: opacity 1s ">
                                         <div class="form-group">
                                             <span class="form-label"  for="returnDate">Trở về</span>
                                             <input class="form-control" type="date" id="returnDate" name="returnDate" required onchange="checkDate()">
@@ -261,7 +261,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <span class="form-label" for="adults">Người lớn (18+)</span>
+                                            <span class="form-label" for="adults">Số hành khách</span>
                                             <select class="form-control" id="adults" name="adults">
                                                 <c:forEach step="1" begin="1" end="10" var="i">
                                                     <option value="${i}">${i}</option>
@@ -270,7 +270,7 @@
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="display: none;">
                                         <div class="form-group">
                                             <span class="form-label" for="children">Trẻ em (0-17)</span>
                                             <select class="form-control" id="children" name="children">
@@ -306,6 +306,7 @@
             </div>
         </div>
         <script>
+            hiddenReturnDate();
             function hiddenReturnDate() {
                 returnDateBox.style.opacity = "0";
                 returnDate.removeAttribute("required");

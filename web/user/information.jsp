@@ -13,6 +13,49 @@
     <head>
         <meta charset="UTF-8">
         <title>Đăng ký mua vé</title>
+
+        <!-- bootstrap core css -->
+
+        <!--owl slider stylesheet -->
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+        <!-- nice select  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+              integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+              crossorigin="anonymous" />
+        <!-- Custom styles for this template -->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="css/animate.css">
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="css/icomoon.css">
+        <!-- Themify Icons-->
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="css/magnific-popup.css">
+
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+        <!-- Owl Carousel  -->
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+        <!-- Theme style  -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- Modernizr JS -->
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <!-- FOR IE9 below -->
+        <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
         <!-- Font Google -->
         <link href="https://fonts.googleapis.com/css?family=Roboto%20Mono" rel="stylesheet">
 
@@ -113,6 +156,9 @@
         </style>
     </head>
     <body>
+        <jsp:include page="../component/header.jsp"/>
+        <br>
+
         <h1 style="text-align: center; margin-bottom: 30px;">Đăng ký mua vé máy bay</h1>
         <div class="main">
             <div class="left">        

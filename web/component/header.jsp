@@ -19,10 +19,13 @@
                 border: 1px rgba(255, 255, 255, 0.7) solid;
                 border-radius: 5px;
             }
+            .dark{
+                background-color: rgba(1,1,1,0.5);
+            }
         </style>
     </head>
     <body>
-        <nav class="gtco-nav" role="navigation">
+        <nav class="gtco-nav dark" role="navigation">
             <div class="gtco-container">
 
                 <div class="row">
