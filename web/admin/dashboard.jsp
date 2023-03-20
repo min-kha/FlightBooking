@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Home
-    Created on : Mar 10, 2023, 9:53:44 PM
-    Author     : Admin
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,53 +25,10 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-table me-1"></i>
-                                    List Categories
-                                </div>
-                                <div class="card-body">
-                                    <table id="datatablesSimple">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                        <c:forEach items="${listCATE}" var="c">
-                                        <form action="action">
-                                            <tr>
-                                                <td>${c.id}</td>
-                                                <td>${c.name}</td>
-                                                <td>${c.description}</td>
-                                                <td>
-                                                    <a href="category?mode=update&id=${c.id}" class="btn btn-secondary btn-sm " tabindex="-1" role="button" aria-disabled="true">Update</a>
-                                                    <a href="category?mode=2&id=${c.id}" class="btn btn-danger btn-sm " tabindex="-1" role="button" aria-disabled="true">Delete</a>
-                                                </td>
-                                            </tr>
-                                        </form>
-
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                            Comming soon
                         </div>
-                    </div>
-                    <div class="container-fluid px-4" >                       
-                        <a href="AddCategory.jsp" class="btn btn-primary btn-lg " tabindex="-1" role="button" aria-disabled="true">Add a new Category</a>
-                    </div>
-                </main>
+
+                    </main>
                 <jsp:include page="/admin/component/footer.jsp"></jsp:include>
             </div>
         </div>

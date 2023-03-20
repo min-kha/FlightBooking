@@ -76,8 +76,10 @@ public class FlightDAO {
     }
 
     public boolean deleteFlight(int id) {
-        String sql = "DELETE FROM Flight WHERE flightID = ?";
-        return DBContext.executeUpdate(sql, id);
+        String sql = "DELETE FROM PassengerInfo WHERE BookingID IN (SELECT BookingID FROM Booking WHERE FlightID = ?);\n"
+                + " DELETE FROM Booking WHERE FlightID = ?;\n"
+                + " DELETE FROM Flight WHERE FlightID = ?;";
+        return DBContext.executeUpdate(sql, id, id, id);
     }
 
     public List<Flight> searchFlights(int routeID, Date departureTime) {

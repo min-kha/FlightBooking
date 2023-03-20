@@ -28,7 +28,7 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="flight/list">List flight</a>
+                            <a class="nav-link" href="/FlightBooking/flight/list">List flight</a>
                         </nav>
                     </div> 
 
@@ -39,8 +39,7 @@
                     </a>
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link" href="userController/list">List User</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Delivery</a>
+                            <a class="nav-link" href="/FlightBooking/userController/list">List User</a>
                         </nav>
                     </div>
                 </div>

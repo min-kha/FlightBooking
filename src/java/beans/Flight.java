@@ -23,6 +23,15 @@ public class Flight {
     public Flight() {
     }
 
+    public Flight(int routeID, Timestamp departureTime, int duration, int capacity, String ticketType, float price) {
+        this.routeID = routeID;
+        this.departureTime = departureTime;
+        this.duration = duration;
+        this.capacity = capacity;
+        this.ticketType = ticketType;
+        this.price = price;
+    }
+
     public Flight(int flightID, int routeID, Timestamp departureTime, int duration, int capacity, String ticketType, float price) {
         this.flightID = flightID;
         this.routeID = routeID;

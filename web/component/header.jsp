@@ -35,7 +35,7 @@
                     <div class="col-xs-8 text-right menu-1">
                         <ul>
                             <li class="ticketLink"><a href="ticket">Hoạt động đặt vé của tôi</a></li>
-                            <li class="has-dropdown">
+<!--                            <li class="has-dropdown">
                                 <a href="#">Travel</a>
                                 <ul class="dropdown">
                                     <li><a href="#">Europe</a></li>
@@ -44,7 +44,7 @@
                                     <li><a href="#">Canada</a></li>
                                 </ul>
                             </li>
-                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>-->
                             <c:if test="${sessionScope.user!=null}">
                                 <li><a href="profile">${sessionScope.user.fullName}</a></li>
                                 <li><a href="logout">Log Out</a></li>

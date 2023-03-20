@@ -51,11 +51,8 @@ public class UserController extends HttpServlet {
                 case urlPatterns + "/list":
                     listAllUsers(request, response);
                     break;
-                case urlPatterns + "/add":
-                    listAllUsers(request, response);
-                    break;
                 case urlPatterns + "/register":
-                    registerUser(request, response);
+                    addUser(request, response);
                     break;
                 case urlPatterns + "/delete":
                     deleteUser(request, response);
@@ -96,17 +93,26 @@ public class UserController extends HttpServlet {
         redirectToList(request, response);
     }
 
-    private void registerUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         String phone = request.getParameter("phoneNumber");
-        Users user = new Users(username, password, fullName, email, phone, address, 1); // 1 is User
+        int role = 1;  // 1 is User
+        Users u = (Users) (request.getSession().getAttribute("user"));
+        if (u.getRole() == 0) {
+            role = Integer.parseInt(request.getParameter("role"));
+        }
+        Users user = new Users(username, password, fullName, email, phone, address, role);
         boolean result = userDAO.addUser(user);
         System.out.println("Add: ==>" + user + ": " + result);
-        response.sendRedirect(request.getContextPath() + "/login");
+        if (u.getRole() == 0) {
+            listAllUsers(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) {
@@ -148,4 +154,5 @@ public class UserController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/listUser.jsp");
         dispatcher.forward(request, response);
     }
+
 }

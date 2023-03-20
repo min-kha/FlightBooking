@@ -4,6 +4,8 @@
  */
 package beans;
 
+import dao.CityDAO;
+
 /**
  *
  * @author khami
@@ -46,4 +48,20 @@ public class Route {
     public void setDistance(int distance) {
         this.distance = distance;
     }
+
+    public String getDepartureCityName() {
+        City c = new CityDAO().getCityById(departureCityID);
+        return c.getCityName();
+    }
+
+    public String getArrivalCityName() {
+        City c = new CityDAO().getCityById(arrivalCityID);
+        return c.getCityName();
+    }
+
+    @Override
+    public String toString() {
+        return "[RouteID=" + routeID + " " + getDepartureCityName() + " " + getArrivalCityName() + "]";
+    }
+
 }

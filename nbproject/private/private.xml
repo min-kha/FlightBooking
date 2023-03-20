@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/web/user/confirmation.jsp</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/LoginController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/dao/BookingDAO.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/dao/TicketDAO.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/UserController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/PassengerController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/BookingController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/TicketController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/PayController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/LogoutController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/src/java/controller/ConfirmationController.java</file>
-            <file>file:/D:/KHA/FPTU/Semesters/Semester4/PRJ301/Projects/FlightBooking/web/user/login.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

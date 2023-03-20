@@ -8,6 +8,10 @@
         <servlet-name>AdminController</servlet-name>
         <servlet-class>controller.AdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FlightController</servlet-name>
+        <servlet-class>controller.FlightController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/userController/*</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/adminController/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FlightController</servlet-name>
+        <url-pattern>/flight/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

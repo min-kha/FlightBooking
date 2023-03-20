@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Home
-    Created on : Mar 10, 2023, 9:53:44 PM
-    Author     : Admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>User Controller</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/FlightBooking/admin/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -68,7 +63,7 @@
                                                 <td>${u.email}</td>
                                                 <td>${u.phoneNumber}</td>
                                                 <td>${u.address}</td>
-                                                <td>${u.role}</td>
+                                                <td>${u.role==0?'Admin':'User'}</td>
                                                 <td>
                                                     <form method="POST" action="/FlightBooking/userController/delete">
                                                         <input value="${u.userID}" name="userID" type="hidden"/>
@@ -86,36 +81,37 @@
                     <div class="container-fluid px-4" >                       
                         <button onclick="add.style.display='block';" class="btn btn-primary btn-lg " tabindex="-1" role="button" aria-disabled="true">Add a new account</button>
                     </div>
-                        <div id="add" style="display: none; padding: 10px; margin: 20px auto 20px 30px;width: 300px; background-color: rgba(1,1,1,0.2); border-radius: 10px;">
-                        <form method="post" action="/FlightBooking/userController/add">
+                        <div id="add" style="display: none; padding: 20px; margin: 20px auto 20px 30px; width: 500px; border: 1px #666666 solid; border-radius: 10px;">
+                        <form method="post" action="/FlightBooking/userController/register">
+                            <h3 style="text-align: center;">Thêm tài khoản user/admin </h3>
                             <div class="form-group-lg mb-3 border-dark">
                                 <label for="username">Username</label>
-                                <input class="form-control" id="username" name="username" type="text" value="${user.username}" required >
+                                <input class="form-control" id="username" name="username" type="text" value="" required >
                             </div>
                             <div class="form-group-lg mb-3">
                                 <label for="fullname">Password</label>
-                                <input class="form-control" id="password" name="password" type="text" value="${user.password}" required>
+                                <input class="form-control" id="password" name="password" type="text" value="" required>
                             </div>
                             <div class="form-group-lg mb-3">
                                 <label for="fullname">Full Name</label>
-                                <input class="form-control" id="fullname" name="fullName" type="text" value="${user.fullName}" required>
+                                <input class="form-control" id="fullname" name="fullName" type="text" value="" required>
                             </div>
                             <div class="form-group-lg mb-3">
                                 <label for="email">Email</label>
-                                <input class="form-control" id="email" name="email" type="email" value="${user.email}" required>
+                                <input class="form-control" id="email" name="email" type="email" value="" required>
                             </div>
                             <div class="form-group-lg mb-3">
                                 <label for="address">Address</label>
-                                <input class="form-control" id="address" name="address" type="text" value="${user.address}" required>
+                                <input class="form-control" id="address" name="address" type="text" value="" required>
                             </div>
                             <div class="form-group-lg mb-3">
                                 <label for="phone">Phone Number</label>
-                                <input class="form-control" id="phone" name="phoneNumber" type="text" value="${user.phoneNumber}" required>
+                                <input class="form-control" id="phone" name="phoneNumber" type="text" value="" required>
                             </div>
                             <div class="form-group-lg mb-3">
-                                <label for="role">Quyền </label>
-                                <label><input id="role" name="role" type="radio" value="Admin" required> Admin</label>
-                                <label><input id="role" name="role" type="radio" value="User" required> User </label>
+                                <label for="role">Role: </label>
+                                <label><input id="role" name="role" type="radio" value="0" required> Admin</label>
+                                <label><input id="role" name="role" type="radio" value="1" required> User </label>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                 <button type="submit" class=" button btn btn-primary">Add</button>

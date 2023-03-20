@@ -40,7 +40,6 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getRequestURI();
         System.out.println("Action(admin): " + action);
-        System.out.println("Action(admin) test: " + request.getContextPath());
         final String urlPatterns = "/FlightBooking/adminController";
         request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
         try {
